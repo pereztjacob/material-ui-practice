@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import ModalStepper from './ModalStepper';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import classNames from 'classnames';
 
 function getModalStyle() {
   const top = 50;
@@ -33,6 +39,17 @@ const styles = theme => ({
 class IntroModal extends React.Component {
   state = {
     open: false,
+    password: '',
+    showPassword: false,
+  };
+
+
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
   };
 
   handleOpen = () => {
@@ -48,18 +65,43 @@ class IntroModal extends React.Component {
 
     return (
       <div>
-        <Button className="modalOpen" onClick={this.handleOpen}>Open Modal</Button>
+        <Button className="modalOpen" onClick={this.handleOpen}>Sign In</Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <div style={getModalStyle()} className={classes.paper}>
+        <div style={getModalStyle()} className={classes.paper}>
 
-            <ModalStepper />
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="component-simple">Name</InputLabel>
+            <Input id="component-simple" value={this.state.name} onChange={this.handleChange} />
+          </FormControl>
 
-          </div>
+          <FormControl className={classNames(classes.margin, classes.textField)}>
+            <InputLabel htmlFor="adornment-password">Password</InputLabel>
+            <Input
+              id="adornment-password"
+              type={this.state.showPassword ? 'text' : 'password'}
+              value={this.state.password}
+              onChange={this.handleChange('password')}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                  >
+                    {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+
+          <Button variant="contained" color="primary">Submit</Button>
+
+        </div>
         </Modal>
       </div>
     );
