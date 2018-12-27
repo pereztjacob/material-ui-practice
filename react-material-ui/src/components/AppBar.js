@@ -13,6 +13,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import SignInModal from './SignInModal';
+import SignUpModal from './SignUpModal';
 
 const styles = theme => ({
   root: {
@@ -121,8 +123,8 @@ class PrimarySearchAppBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Log In</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>Sign Up</MenuItem>
+        <MenuItem><SignInModal /></MenuItem>
+        <MenuItem><SignUpModal /></MenuItem>
       </Menu>
     );
 
