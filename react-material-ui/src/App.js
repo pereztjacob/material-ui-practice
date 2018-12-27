@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, StaticRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
-import PrimarySearchAppBar from './components/AppBar';
-import Introduction from './components/Introduction';
-import GeneralStockList from './components/GeneralStockList';
+import Home from './components/Home';
 
 class App extends Component {
   render() {
     return (
+
+      <Router>
       <div className="App">
-        <PrimarySearchAppBar />
-        <Introduction />
-        <GeneralStockList />
+
+        <Switch>
+          <Route exact path="/" component={Home}/>
+        </Switch>
+
       </div>
+      </Router>
+
+
     );
   }
 }

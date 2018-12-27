@@ -5,10 +5,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import ReactSVG from 'react-svg';
 import ArrowDown from '@material-ui/icons/ArrowDownwardOutlined';
+import ArrowUp from '@material-ui/icons/ArrowUpwardOutlined';
 
 const styles = theme => ({
   root: {
@@ -30,7 +29,8 @@ function GeneralStockList(props) {
       {listItems.map(result => 
         <ListItem alignItems="flex-start" key={result}>
           <ListItemAvatar>
-            <ArrowDown />
+            {/* <ArrowDown /> */}
+            <ArrowUp />
           </ListItemAvatar>
           <ListItemText
             primary={`Lunch this weekend? ### ${result}`}
